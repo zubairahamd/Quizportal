@@ -1,0 +1,225 @@
+use quizportal;
+drop database quizportal;
+
+-- Create the database
+CREATE DATABASE quizportal;
+USE quizportal;
+
+-- Create table admininfo
+CREATE TABLE admininfo (
+    adminid VARCHAR(20) NOT NULL,
+    aname VARCHAR(20),
+    password VARCHAR(20),
+    PRIMARY KEY (adminid)
+);
+
+-- Create table course
+CREATE TABLE course (
+    courseid INT NOT NULL,
+    name VARCHAR(50),
+    address VARCHAR(50),
+    phoneno VARCHAR(20),
+    email VARCHAR(50),
+    PRIMARY KEY (courseid)
+);
+
+-- Create table exam_schedule
+CREATE TABLE exam_schedule (
+    rollno INT NOT NULL,
+    courseid INT,
+    name VARCHAR(50),
+    date_of_exam INT,
+    PRIMARY KEY (rollno)
+);
+
+-- Create table html_css
+CREATE TABLE html_css (
+    questionno INT NOT NULL,
+    qname VARCHAR(255) NOT NULL,
+    opt1 VARCHAR(255) NOT NULL,
+    opt2 VARCHAR(255) NOT NULL,
+    opt3 VARCHAR(255) NOT NULL,
+    opt4 VARCHAR(255) NOT NULL,
+    correct VARCHAR(255),
+    PRIMARY KEY (questionno)
+);
+
+-- Create table institute
+CREATE TABLE institute (
+    insid INT NOT NULL,
+    name VARCHAR(50),
+    address VARCHAR(100),
+    phoneno VARCHAR(10),
+    emailid VARCHAR(100),
+    regno INT,
+    PRIMARY KEY (insid)
+);
+
+-- Create table java
+CREATE TABLE java (
+    questionno INT NOT NULL,
+    qname VARCHAR(255) NOT NULL,
+    opt1 VARCHAR(50) NOT NULL,
+    opt2 VARCHAR(50) NOT NULL,
+    opt3 VARCHAR(50) NOT NULL,
+    opt4 VARCHAR(50) NOT NULL,
+    correct VARCHAR(255),
+    PRIMARY KEY (questionno)
+);
+
+-- Create table python
+CREATE TABLE python (
+    questionno INT NOT NULL,
+    qname VARCHAR(255) NOT NULL,
+    opt1 VARCHAR(255) NOT NULL,
+    opt2 VARCHAR(255) NOT NULL,
+    opt3 VARCHAR(255) NOT NULL,
+    opt4 VARCHAR(255) NOT NULL,
+    correct VARCHAR(255),
+    PRIMARY KEY (questionno)
+);
+
+-- Create table quizappear
+CREATE TABLE quizappear (
+    rollno INT NOT NULL,
+    course_id INT,
+    name VARCHAR(20),
+    date_of_appear VARCHAR(20),
+    PRIMARY KEY (rollno)
+);
+
+-- Create table reappear
+CREATE TABLE reappear (
+    rollno INT NOT NULL,
+    course VARCHAR(20),
+    result_score INT,
+    attempt INT,
+    PRIMARY KEY (rollno)
+);
+
+-- Create table resulttable
+CREATE TABLE resulttable (
+    rollno INT,
+    coursename VARCHAR(20),
+    name VARCHAR(20),
+    totalscore INT
+);
+
+-- Create table sql_mcq
+CREATE TABLE sql_mcq (
+    questionno INT NOT NULL,
+    qname VARCHAR(255) NOT NULL,
+    opt1 VARCHAR(50) NOT NULL,
+    opt2 VARCHAR(50) NOT NULL,
+    opt3 VARCHAR(50) NOT NULL,
+    opt4 VARCHAR(50) NOT NULL,
+    correct VARCHAR(255),
+    PRIMARY KEY (questionno)
+);
+
+-- Create table student
+CREATE TABLE student (
+    rollno INT NOT NULL,
+    courseid INT,
+    name VARCHAR(50),
+    address VARCHAR(50),
+    phoneno VARCHAR(20),
+    email VARCHAR(50),
+    PRIMARY KEY (rollno),
+    FOREIGN KEY (courseid) REFERENCES course(courseid)
+);
+
+-- Create table userinfo
+CREATE TABLE userinfo (
+    name VARCHAR(255),
+    adress VARCHAR(255),
+    email VARCHAR(255),
+    city VARCHAR(255),
+    phone VARCHAR(255),
+    userid VARCHAR(255),
+    password VARCHAR(255)
+);
+
+-- Insert data into course
+INSERT INTO course (courseid, name, address, phoneno, email)
+VALUES (1, 'BCA', 'kheriya mod agra', '7409309987', 'rahul123@gmail.com');
+
+-- Insert data into exam_schedule
+INSERT INTO exam_schedule (rollno, courseid, name, date_of_exam)
+VALUES (1, 101, 'rahul', 0);
+
+-- Insert data into html_css
+INSERT INTO html_css (questionno, qname, opt1, opt2, opt3, opt4, correct)
+VALUES
+(1, 'What does HTML stand for?', 'HyperText Markdown Language', 'HyperText Markup Language', 'HighText Machine Language', 'Hyperlink and Text Markup Language', 'HyperText Markup Language'),
+(2, 'Which HTML tag is used to display a picture on a webpage?', '<pic>', '<image>', '<img>', '<src>', '<img>'),
+(3, 'Which CSS property is used to change the background color?', 'color', 'bgcolor', 'background-color', 'backgroundColor', 'background-color'),
+(4, 'How do you make text bold in HTML?', '<b>', '<strong>', '<bold>', 'Both A and B', 'Both A and B'),
+(5, 'Which symbol is used to select an ID in CSS?', '.', '#', '*', '@', '#');
+
+-- Insert data into institute
+INSERT INTO institute (insid, name, address, phoneno, emailid, regno)
+VALUES
+(1, 'rahul', 'kheria mod agra', '7409309987', 'rahul123@gmail.com', 101),
+(2, 'Sneha Reddy', 'Banjara Hills, Hyderabad, Telangana', '9123456780', 'sneha.reddy@yahoo.com', 102),
+(3, 'Rahul Verma', 'Connaught Place, New Delhi', '9988776655', 'rahul.verma@rediffmail.com', 103),
+(4, 'Ishita Patel', 'Navrangpura, Ahmedabad, Gujarat', '9090909090', 'ishita.patel@gmail.com', 104),
+(5, 'Mohammed Kaif', 'Idgah Katghar, Agra, Uttar Pradesh', '8475095884', 'kmeanking123@gmail.com', 105);
+
+-- Insert data into java
+INSERT INTO java (questionno, qname, opt1, opt2, opt3, opt4, correct)
+VALUES
+(1, 'Which of these is not a Java keyword?', 'class', 'interface', 'extends', 'include', 'include'),
+(2, 'What is the size of int data type in Java?', '4 bytes', '2 bytes', '8 bytes', 'Depends on system', '4 bytes'),
+(3, 'Which method is the entry point of any Java program?', 'start()', 'main()', 'run()', 'init()', 'main()'),
+(4, 'Which of these is a wrapper class in Java?', 'int', 'float', 'Integer', 'char', 'Integer'),
+(5, 'Which keyword is used to inherit a class in Java?', 'implement', 'inherits', 'extends', 'super', 'extends'),
+(6, 'what is java?', 'language', 'programming language', 'Device', 'place', 'programming language');
+
+-- Insert data into python
+INSERT INTO python (questionno, qname, opt1, opt2, opt3, opt4, correct)
+VALUES
+(1, 'What is the correct file extension for Python files?', '.pt', '.py', '.pyt', '.python', '.py'),
+(2, 'Which keyword is used to create a function in Python?', 'func', 'define', 'def', 'function', 'def'),
+(3, 'What data type is the object below? x = [1, 2, 3]', 'List', 'Tuple', 'Dictionary', 'Set', 'List'),
+(4, 'How do you insert COMMENTS in Python code?', '# This is a comment', '// This is a comment', '/* This is a comment */', '<!-- This is a comment -->', '# This is a comment'),
+(5, 'Which method can be used to remove items from a list?', 'delete()', 'pop()', 'removeItem()', 'discard()', 'pop()'),
+(7, 'x = 10 y = 20 print(x + y)', '10', '20', '30', 'none', '30');
+
+-- Insert data into quizappear
+INSERT INTO quizappear (rollno, course_id, name, date_of_appear)
+VALUES (1, 101, 'rahul', '1/05/2025');
+
+-- Insert data into resulttable
+INSERT INTO resulttable (rollno, coursename, name, totalscore)
+VALUES
+(101, 'Python', 'aman', 1),
+(102, 'Python', 'aman', 0),
+(102, 'Python', 'aman', 0),
+(102, 'Python', 'aman', 0),
+(101, 'Python', 'aman', 0),
+(101, 'Python', 'aman', 0);
+
+-- Insert data into sql_mcq
+INSERT INTO sql_mcq (questionno, qname, opt1, opt2, opt3, opt4, correct)
+VALUES
+(1, 'Which SQL command is used to remove a table from a database?', 'DELETE', 'REMOVE', 'DROP', 'ERASE', 'DROP'),
+(2, 'Which SQL clause is used to filter the result set?', 'ORDER BY', 'WHERE', 'GROUP BY', 'FROM', 'WHERE'),
+(3, 'Which keyword is used to prevent duplicate values in a SELECT query?', 'UNIQUE', 'DISTINCT', 'PRIMARY', 'FILTER', 'DISTINCT'),
+(4, 'What does the COUNT() function do in SQL?', 'Adds all values', 'Counts rows', 'Finds the average', 'Returns max value', 'Counts rows'),
+(5, 'Which command is used to modify the structure of a table?', 'CHANGE', 'MODIFY', 'UPDATE', 'ALTER', 'ALTER');
+
+-- Insert data into student
+INSERT INTO student (rollno, courseid, name, address, phoneno, email)
+VALUES (10, 1, 'rahul', 'kheriya mod agra', '7409309987', 'rahul123@gmail.com');
+
+-- Insert data into userinfo
+INSERT INTO userinfo (name, adress, email, city, phone, userid, password)
+VALUES
+('Aman Abbas', '38/14 idgah katghar', 'abbasaman77@gmail.com', 'agra', '7409309989', 'aman001', 'aman786056'),
+('kaif', 'idgah katghar', 'kaif061@gmail.com', 'agra', '740930998', 'kaif007', 'kaif001'),
+('zubair', 'nai ki mandi', 'zubiairahmad7866r@gmail.com', 'agra', '7599418163', 'zubair001', 'zubair786056');
+
+INSERT INTO admininfo (adminid, aname, password) VALUES
+('aman001', 'aman', 'aman786056'),
+('value1', 'value2', 'value3');

@@ -1,0 +1,7 @@
+-------------user login---------
+user ID: aman001
+password: aman786056
+
+-------------ADMIN LOGIN---------
+admin ID: aman001
+admin password: aman786056
